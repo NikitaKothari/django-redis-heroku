@@ -7,3 +7,4 @@ psycopg2==2.8.3
 redis==3.2.1
 requests==2.22.0
 django-heroku==0.3.1
+structlog==20.1.0
