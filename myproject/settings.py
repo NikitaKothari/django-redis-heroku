@@ -115,8 +115,6 @@ CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND', BROKER_URL)
 CELERY_REDIS_MAX_CONNECTIONS = os.environ.get('CELERY_REDIS_MAX_CONNECTIONS', 5)
 CELERYD_CONCURRENCY = os.environ.get('CELERYD_CONCURRENCY', 1)
 
-
-
 CELERYBEAT_SCHEDULE = {
     "task1": {
         "task": "myapp.tasks.counter1",
