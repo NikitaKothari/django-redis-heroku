@@ -115,24 +115,5 @@ CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND', BROKER_URL)
 CELERY_REDIS_MAX_CONNECTIONS = os.environ.get('CELERY_REDIS_MAX_CONNECTIONS', 5)
 CELERYD_CONCURRENCY = os.environ.get('CELERYD_CONCURRENCY', 1)
 
-CELERYBEAT_SCHEDULE = {
-    "task1": {
-        "task": "myapp.tasks.counter1",
-        "schedule": timedelta(minutes=1),
-        "args": (),
-    },
-    "test2": {
-        "task": "myapp.tasks.counter2",
-        "schedule": timedelta(minutes=1),
-        "args": (),
-    },
-    "test3": {
-        "task": "myapp.tasks.counter3",
-        "schedule": timedelta(minutes=1),
-        "args": (),
-    }
-}
-
-
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
