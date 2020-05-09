@@ -112,7 +112,10 @@ BROKER_POOL_LIMIT = os.environ.get('BROKER_POOL_LIMIT', 10)
 # CELERY CONFIG
 CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', BROKER_URL)
 CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND', BROKER_URL)
-CELERY_REDIS_MAX_CONNECTIONS = 10
+CELERY_REDIS_MAX_CONNECTIONS = os.environ.get('CELERY_REDIS_MAX_CONNECTIONS', 10)
+
+LIMIT = os.environ.get('LIMIT', 10)
+
 
 # Configure Django App for Heroku.
 django_heroku.settings(locals())

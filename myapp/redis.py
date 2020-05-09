@@ -1,4 +1,4 @@
 import redis
-from django.conf import settings
+from myapp.pool import POOL
 
-client = redis.from_url(settings.REDIS_URL, decode_responses=True)
+client = redis.Redis(connection_pool=POOL, decode_responses=True)
