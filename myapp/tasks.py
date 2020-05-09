@@ -43,6 +43,7 @@ def counter4():
     log.info("counter1")
     instance, created = MyModel.objects.get_or_create(id=1)
     instance.counter += 1
+    client.set(instance.counter, "test")
     instance.save()
 
 @periodic_task(run_every=crontab(minute="*"))
@@ -50,6 +51,7 @@ def counter5():
     log.info("counter2")
     instance, created = MyModel.objects.get_or_create(id=1)
     instance.counter += 1
+    client.get(instance.counter)
     instance.save()
 
 
@@ -58,4 +60,5 @@ def counter6():
     log.info("counter3")
     instance, created = MyModel.objects.get_or_create(id=1)
     instance.counter += 1
+    client.set(instance.counter, "test")
     instance.save()
