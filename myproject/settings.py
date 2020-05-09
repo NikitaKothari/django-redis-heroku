@@ -107,31 +107,13 @@ USE_TZ = True
 REDIS_URL = os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379')
 BROKER_URL = os.environ.get('HEROKU_REDIS_BLACK_URL', 'redis://127.0.0.1:6379')
 BROKER_CONNECTION_MAX_RETRIES = os.environ.get('BROKER_CONNECTION_MAX_RETRIES', None)
-BROKER_POOL_LIMIT = os.environ.get('BROKER_POOL_LIMIT', None)
+BROKER_POOL_LIMIT = os.environ.get('BROKER_POOL_LIMIT', 10)
 
 # CELERY CONFIG
 CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', BROKER_URL)
 CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND', BROKER_URL)
 CELERY_REDIS_MAX_CONNECTIONS = os.environ.get('CELERY_REDIS_MAX_CONNECTIONS', 10)
 CELERYD_CONCURRENCY = os.environ.get('CELERYD_CONCURRENCY', 1)
-
-CACHE_URL = os.environ.get(REDIS_URL)
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": CACHE_URL,
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-            "IGNORE_EXCEPTIONS": True,
-            'CONNECTION_POOL_CLASS': 'redis.BlockingConnectionPool',
-            'CONNECTION_POOL_CLASS_KWARGS': {
-                'max_connections': 10
-            }
-        },
-        "VERSION": 1,
-    }
-}
-CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
