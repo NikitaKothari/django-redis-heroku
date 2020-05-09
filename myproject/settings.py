@@ -115,5 +115,20 @@ CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND', BROKER_URL)
 CELERY_REDIS_MAX_CONNECTIONS = 10
 CELERYD_CONCURRENCY = os.environ.get('CELERYD_CONCURRENCY', 1)
 
+CELERYD_HIJACK_ROOT_LOGGER = False
+CELERYD_LOG_FORMAT = "level=%(levelname)s proc=%(processName)s %(message)s"
+CELERYD_MAX_TASKS_PER_CHILD = 20
+CELERY_TIMEZONE = "UTC"
+CELERYBEAT_MAX_LOOP_INTERVAL = 5  # seconds
+BROKER_HEARTBEAT = 0
+BROKER_TRANSPORT_OPTIONS = {
+    "visibility_timeout": 1 * 60 * 60,  # seconds
+    "polling_interval": 1.0,  # seconds
+    "fanout_prefix": True,
+    "fanout_patterns": True,
+}
+CELERY_DISABLE_RATE_LIMITS = True
+CELERYD_PREFETCH_MULTIPLIER = 1
+
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
