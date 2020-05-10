@@ -17,7 +17,7 @@ def counter():
     client.set(instance.counter, "test", 24 * 3600)
     instance.save()
 
-@periodic_task(run_every=crontab(second="15"))
+@periodic_task(run_every=crontab(second="*"))
 def counter1():
     log.info("counter1")
     instance, created = MyModel.objects.get_or_create(id=1)
@@ -25,7 +25,7 @@ def counter1():
     client.set(instance.counter, "test", 24 * 3600)
     instance.save()
 
-@periodic_task(run_every=crontab(second="15"))
+@periodic_task(run_every=crontab(second="*"))
 def counter2():
     log.info("counter2")
     instance, created = MyModel.objects.get_or_create(id=1)
@@ -33,7 +33,7 @@ def counter2():
     client.get(instance.counter)
     instance.save()
 
-@periodic_task(run_every=crontab(second="15"))
+@periodic_task(run_every=crontab(second="*"))
 def counter3():
     log.info("counter3")
     instance, created = MyModel.objects.get_or_create(id=1)
@@ -49,7 +49,7 @@ def counter4():
     client.set(instance.counter, "test", 24 * 3600)
     instance.save()
 
-@periodic_task(run_every=crontab(second="15"))
+@periodic_task(run_every=crontab(second="*"))
 def counter5():
     log.info("counter5")
     instance, created = MyModel.objects.get_or_create(id=1)
@@ -57,7 +57,7 @@ def counter5():
     client.get(instance.counter)
     instance.save()
 
-@periodic_task(run_every=crontab(second="15"))
+@periodic_task(run_every=crontab(second="*"))
 def counter6():
     log.info("counter6")
     instance, created = MyModel.objects.get_or_create(id=1)
@@ -65,7 +65,7 @@ def counter6():
     client.set(instance.counter, "test", 24 * 3600)
     instance.save()
 
-@periodic_task(run_every=crontab(second="15"))
+@periodic_task(run_every=crontab(second="*"))
 def counter7():
     log.info("counter7")
     instance, created = MyModel.objects.get_or_create(id=1)
@@ -73,7 +73,7 @@ def counter7():
     client.set(instance.counter, "test", 24 * 3600)
     instance.save()
 
-@periodic_task(run_every=crontab(second="15"))
+@periodic_task(run_every=crontab(second="*"))
 def counter8():
     log.info("counter8")
     instance, created = MyModel.objects.get_or_create(id=1)
@@ -81,7 +81,7 @@ def counter8():
     client.set(instance.counter, "test", 24 * 3600)
     instance.save()
 
-@periodic_task(run_every=crontab(second="15"))
+@periodic_task(run_every=crontab(second="*"))
 def counter9():
     log.info("counter9")
     instance, created = MyModel.objects.get_or_create(id=1)
@@ -89,7 +89,7 @@ def counter9():
     client.set(instance.counter, "test", 24 * 3600)
     instance.save()
 
-@periodic_task(run_every=crontab(second="15"))
+@periodic_task(run_every=crontab(second="*"))
 def counter10():
     log.info("counter10")
     instance, created = MyModel.objects.get_or_create(id=1)
