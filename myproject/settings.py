@@ -12,7 +12,13 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import django_heroku
-from datetime import timedelta
+
+def get_int_env(varname, default=None):
+    value = os.environ.get(varname)
+    if value is None:
+        return default
+
+    return int(value)
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -114,7 +120,7 @@ CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', BROKER_URL)
 CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND', BROKER_URL)
 CELERY_REDIS_MAX_CONNECTIONS = os.environ.get('CELERY_REDIS_MAX_CONNECTIONS', 10)
 
-LIMIT = os.environ.get('LIMIT', 5)
+LIMIT = get_int_env('LIMIT', 5)
 
 
 # Configure Django App for Heroku.
