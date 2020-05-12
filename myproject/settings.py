@@ -128,14 +128,10 @@ CACHES = {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": CACHE_URL,
         "OPTIONS": {
-            'SOCKET_TIMEOUT': 5,
-            'SOCKET_CONNECT_TIMEOUT': 5,
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-            "IGNORE_EXCEPTIONS": True,
             'CONNECTION_POOL_CLASS': 'redis.BlockingConnectionPool',
             'CONNECTION_POOL_CLASS_KWARGS': {
                 'max_connections': get_int_env('LIMIT', 5),
-                'timeout': 20,
+                'timeout': 2,
             },
         },
         "VERSION": 1,
