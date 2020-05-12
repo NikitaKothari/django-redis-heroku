@@ -134,7 +134,7 @@ CACHES = {
             "IGNORE_EXCEPTIONS": True,
             'CONNECTION_POOL_CLASS': 'redis.BlockingConnectionPool',
             'CONNECTION_POOL_CLASS_KWARGS': {
-                'max_connections': 10,
+                'max_connections': get_int_env('LIMIT', 5),
                 'timeout': 20,
             },
         },
