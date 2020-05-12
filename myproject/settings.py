@@ -121,6 +121,7 @@ CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND', BROKER_URL)
 CELERY_REDIS_MAX_CONNECTIONS = os.environ.get('CELERY_REDIS_MAX_CONNECTIONS', 10)
 
 LIMIT = get_int_env('LIMIT', 5)
+LIMIT1 = get_int_env('LIMIT', 5)
 
 CACHE_URL = os.environ.get("CACHE_URL", REDIS_URL)
 CACHES = {
@@ -133,6 +134,7 @@ CACHES = {
                 'max_connections': get_int_env('LIMIT', 5),
                 'timeout': 2,
             },
+            'MAX_CONNECTIONS': get_int_env('LIMIT1', 1000),
         },
         "VERSION": 1,
     }
