@@ -141,5 +141,8 @@ CACHES = {
 }
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
+PASSWORD = 'p39d87357fb2861c9b82d0f3e682ffd01d56ae6f26ed2bdd84bbd65bfaecbd1bf'
+
+
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
