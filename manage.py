@@ -4,18 +4,11 @@ import os
 import sys
 
 
-
+def main():
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
+    from django.core.management import execute_from_command_line
+    execute_from_command_line(sys.argv)
 
 
 if __name__ == '__main__':
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
-    import django
-
-    django.setup()
-
-    # patch our custom showwarnings handler in
-    # warnings.showwarning = warn_with_rollbar
-
-    from django.core.management import execute_from_command_line
-
-    execute_from_command_line(sys.argv)
+    main()
