@@ -110,7 +110,7 @@ USE_L10N = True
 USE_TZ = True
 
 # REDIS CONFIG
-REDIS_URL = os.environ.get('REDIS_URL', 'redis://127.0.0.1:6379')
+REDIS_URL = os.environ.get('REDIS_URL_TWEMPROXY', 'redis://127.0.0.1:6379')
 BROKER_URL = os.environ.get('HEROKU_REDIS_BLACK_URL', 'redis://127.0.0.1:6379')
 BROKER_CONNECTION_MAX_RETRIES = os.environ.get('BROKER_CONNECTION_MAX_RETRIES', None)
 BROKER_POOL_LIMIT = os.environ.get('BROKER_POOL_LIMIT', 10)
