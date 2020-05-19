@@ -62,7 +62,7 @@ def counter6():
     log.info("counter6")
     instance, created = MyModel.objects.get_or_create(id=1)
     instance.counter += 1
-    cache.set(instance.counter, "test", 24 * 3600)
+    client.set(instance.counter, "test", 24 * 3600)
     instance.save()
 
 @periodic_task(run_every=crontab(minute="*"))
