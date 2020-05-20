@@ -94,5 +94,10 @@ def counter10():
     log.info("counter10")
     instance, created = MyModel.objects.get_or_create(id=1)
     instance.counter += 1
-    client.set(instance.counter, "test", 24 * 3600)
+    with client.pipeline() as p:
+        p.set(instance.counter, "test", 24 * 3600)
+        p.hset(
+            instance.counter, "test", 24 * 3600
+        )
+        p.execute()
     instance.save()
