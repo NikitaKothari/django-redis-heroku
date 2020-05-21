@@ -1,5 +1,4 @@
 import redis
-from django.conf import settings
+from myapp.pool import POOL
 
-POOL = redis.ConnectionPool.from_url(settings.REDIS_URL, max_connections=settings.LIMIT, timeout=10)
 client = redis.Redis(connection_pool=POOL, decode_responses=True)
