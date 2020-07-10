@@ -4,6 +4,14 @@ from structlog import get_logger
 
 log = get_logger()
 
+def get_ip(request):
+    log.info("****************************")
+    log.info(request.META.get("REMOTE_ADDR", "None"))
+    log.info("****************************")
+    log.info(request.META.get("X-Forwarded-For", "None"))
+    log.info("****************************")
+
+
 # TODO: consolidate this to avoid duplication.
 class RequestLoggingMiddleware(object):
     def __init__(self, get_response):
@@ -41,7 +49,7 @@ class RequestLoggingMiddleware(object):
         return {
             "process_name": "django",
             "request_id": request.META.get("HTTP_X_REQUEST_ID", "None"),
-            "ip": request.META.get("REMOTE_ADDR"),
+            "ip": get_ip(request),
             "host": request.get_host(),
             "method": request.method,
             "path": request.get_full_path(),
