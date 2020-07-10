@@ -8,7 +8,7 @@ def get_ip(request):
     log.info("**************&&&&&&&&&&&&&&&**************")
     log.info(request.META.get("REMOTE_ADDR", "None"))
     log.info("**************$$$$$$$$$$$$$$$**************")
-    log.info(request.META.get("X-Forwarded-For", "None"))
+    log.info(request.META.get("HTTP_X_FORWARDED_FOR", "None"))
     log.info("**************YYYYYYYYYYYYYYY**************")
 
 
