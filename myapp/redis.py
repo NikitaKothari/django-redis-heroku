@@ -8,5 +8,5 @@ log.info(settings.REDIS_URL)
 log.info("*******************")
 
 
-POOL = redis.ConnectionPool.from_url(settings.REDIS_URL, max_connections=settings.LIMIT)
+POOL = redis.ConnectionPool.from_url(settings.REDIS_URL)
 client = redis.Redis(connection_pool=POOL, decode_responses=True)
