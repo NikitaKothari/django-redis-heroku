@@ -116,21 +116,6 @@ CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND", BROKER_URL)
 CELERY_REDIS_MAX_CONNECTIONS = os.environ.get("CELERY_REDIS_MAX_CONNECTIONS", 10)
 
 LIMIT = get_int_env("LIMIT", 5)
-LIMIT1 = get_int_env("LIMIT", 5)
-
-CACHE_URL = os.environ.get("CACHE_URL", REDIS_URL)
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": CACHE_URL,
-        "OPTIONS": {
-            "CONNECTION_POOL_CLASS": "redis.BlockingConnectionPool",
-            "MAX_CONNECTIONS": get_int_env("LIMIT1", 1000),
-        },
-        "VERSION": 1,
-    }
-}
-CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
