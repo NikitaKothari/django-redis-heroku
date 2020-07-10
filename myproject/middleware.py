@@ -5,11 +5,11 @@ from structlog import get_logger
 log = get_logger()
 
 def get_ip(request):
-    log.info("****************************")
-    log.info(REMOTE_ADDR="REMOTE_ADDR", ip=request.META.get("REMOTE_ADDR", "None"))
-    log.info("****************************")
-    log.info(Forwarded="Forwarded", ip=request.META.get("X-Forwarded-For", "None"))
-    log.info("****************************")
+    log.info("**************&&&&&&&&&&&&&&&**************")
+    log.info(request.META.get("REMOTE_ADDR", "None"))
+    log.info("**************$$$$$$$$$$$$$$$**************")
+    log.info(request.META.get("X-Forwarded-For", "None"))
+    log.info("**************YYYYYYYYYYYYYYY**************")
 
 
 # TODO: consolidate this to avoid duplication.
