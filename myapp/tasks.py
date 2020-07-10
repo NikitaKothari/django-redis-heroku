@@ -19,7 +19,7 @@ def counter():
     instance.save()
 
 
-#@periodic_task(run_every=crontab(minute="*"))
+@periodic_task(run_every=crontab(minute="10"))
 def counter1():
     log.info("counter1")
     instance, created = MyModel.objects.get_or_create(id=1)
