@@ -9,6 +9,7 @@ from celery.task import periodic_task
 
 log = structlog.get_logger()
 
+
 @app.task
 def counter():
     log.info("test test test")
@@ -16,6 +17,7 @@ def counter():
     instance.counter += 1
     client.set(instance.counter, "test", 24 * 3600)
     instance.save()
+
 
 @periodic_task(run_every=crontab(minute="*"))
 def counter1():
@@ -25,6 +27,7 @@ def counter1():
     client.set(instance.counter, "test", 24 * 3600)
     instance.save()
 
+
 @periodic_task(run_every=crontab(minute="*"))
 def counter2():
     log.info("counter2")
@@ -32,6 +35,7 @@ def counter2():
     instance.counter += 1
     client.get(instance.counter)
     instance.save()
+
 
 @periodic_task(run_every=crontab(minute="*"))
 def counter3():
@@ -41,6 +45,7 @@ def counter3():
     client.set(instance.counter, "test", 24 * 3600)
     instance.save()
 
+
 @periodic_task(run_every=crontab(minute="*"))
 def counter4():
     log.info("counter4")
@@ -48,6 +53,7 @@ def counter4():
     instance.counter += 1
     client.set(instance.counter, "test", 24 * 3600)
     instance.save()
+
 
 @periodic_task(run_every=crontab(minute="*"))
 def counter5():
@@ -57,6 +63,7 @@ def counter5():
     client.get(instance.counter)
     instance.save()
 
+
 @periodic_task(run_every=crontab(minute="*"))
 def counter6():
     log.info("counter6")
@@ -64,6 +71,7 @@ def counter6():
     instance.counter += 1
     client.set(instance.counter, "test", 24 * 3600)
     instance.save()
+
 
 @periodic_task(run_every=crontab(minute="*"))
 def counter7():
@@ -73,6 +81,7 @@ def counter7():
     client.set(instance.counter, "test", 24 * 3600)
     instance.save()
 
+
 @periodic_task(run_every=crontab(minute="*"))
 def counter8():
     log.info("counter8")
@@ -81,6 +90,7 @@ def counter8():
     client.set(instance.counter, "test", 24 * 3600)
     instance.save()
 
+
 @periodic_task(run_every=crontab(minute="*"))
 def counter9():
     log.info("counter9")
@@ -88,6 +98,7 @@ def counter9():
     instance.counter += 1
     client.set(instance.counter, "test", 24 * 3600)
     instance.save()
+
 
 @periodic_task(run_every=crontab(minute="*"))
 def counter10():
