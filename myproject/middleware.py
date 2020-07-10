@@ -41,7 +41,7 @@ class RequestLoggingMiddleware(object):
         return {
             "process_name": "django",
             "request_id": request.META.get("HTTP_X_REQUEST_ID", "None"),
-            "ip": request.META.get("X-Forwarded-For"),
+            "ip": request.META.get("REMOTE_ADDR"),
             "host": request.get_host(),
             "method": request.method,
             "path": request.get_full_path(),
