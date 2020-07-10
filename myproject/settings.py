@@ -125,10 +125,6 @@ CACHES = {
         "LOCATION": CACHE_URL,
         "OPTIONS": {
             "CONNECTION_POOL_CLASS": "redis.BlockingConnectionPool",
-            "CONNECTION_POOL_CLASS_KWARGS": {
-                "max_connections": get_int_env("LIMIT", 5),
-                "timeout": 20,
-            },
             "MAX_CONNECTIONS": get_int_env("LIMIT1", 1000),
         },
         "VERSION": 1,
