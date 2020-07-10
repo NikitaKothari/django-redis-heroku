@@ -6,9 +6,9 @@ log = get_logger()
 
 def get_ip(request):
     log.info("****************************")
-    log.info(request.META.get("REMOTE_ADDR", "None"))
+    log.info(REMOTE_ADDR="REMOTE_ADDR", request.META.get("REMOTE_ADDR", "None"))
     log.info("****************************")
-    log.info(request.META.get("X-Forwarded-For", "None"))
+    log.info(request.META.get(Forwarded="Forwarded", "X-Forwarded-For", "None"))
     log.info("****************************")
 
 
