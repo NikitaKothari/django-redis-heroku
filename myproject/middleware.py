@@ -14,16 +14,10 @@ def get_ip(request):
     else:
         ip = request.META.get("REMOTE_ADDR")
 
-    log.info("________________________________")
-    ip1 = ipaddress.IPv4Address(ip)
-    ip3 = ipaddress.IPv4Address("127.0.0.1")
-    log.info(ip3.is_private)
-    log.info(ip3.is_link_local)
-    log.info("________________________________")
+    log.info("REMOTE_ADDR")
+    log.info(request.META.get("REMOTE_ADDR"))
 
-
-
-    return ip1
+    return ip
 
 class RequestLoggingMiddleware(object):
     def __init__(self, get_response):
