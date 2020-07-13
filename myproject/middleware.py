@@ -1,18 +1,28 @@
 import time
+import ipaddress
 from structlog import get_logger
-from ipware import get_client_ip
 
 
 log = get_logger()
 
 
 def get_ip(request):
-    client_ip, is_routable = get_client_ip(request, request_header_order=['HTTP_X_FORWARDED_FOR'])
-    log.info("client_ip *******")
-    log.info(client_ip)
-    if client_ip and is_routable:
-       return client_ip
-    return None
+    x_forwarded_for = request.META.get("X-Forwarded-For")
+    if x_forwarded_for:
+        # IP chains should always be read from left-to-right, The client IP should always be the left-most IP
+        ip = x_forwarded_for.split(",")[0]
+    else:
+        ip = request.META.get("REMOTE_ADDR")
+
+    log.info("________________________________")
+    log.info(ip)
+    log.info(ipaddress.is_private(ip))
+    log.info(ipaddress.is_private("10.0.0.0"))
+    log.info("________________________________")
+
+
+
+    return ip
 
 class RequestLoggingMiddleware(object):
     def __init__(self, get_response):
@@ -48,17 +58,6 @@ class RequestLoggingMiddleware(object):
     @staticmethod
     def request_context(request):
         return {
-            "process_name": "django",
-            "request_id": request.META.get("HTTP_X_REQUEST_ID", "None"),
             "ip": get_ip(request),
             "host": request.get_host(),
-            "method": request.method,
-            "path": request.get_full_path(),
-            "ajax": request.is_ajax(),
-            "content_length": request.META.get("CONTENT_LENGTH"),
-            "content_type": request.META.get("CONTENT_TYPE"),
-            "version": 1,
-            "user_agent": request.META.get("HTTP_USER_AGENT", ""),
-            "client": request.META.get("HTTP_HEROKU_CLIENT", "customer"),
-            "context": request.META.get("HTTP_HEROKU_CONTEXT", ""),
         }
