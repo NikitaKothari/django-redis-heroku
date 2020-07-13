@@ -15,9 +15,13 @@ def get_ip(request):
         ip = request.META.get("REMOTE_ADDR")
 
     log.info("________________________________")
+    ip1 = ipaddress.IPv4Address(ip)
+    ip2 = ipaddress.IPv4Address("10.0.0.0")
     log.info(ip)
-    log.info(ipaddress.is_private(ip))
-    log.info(ipaddress.is_private("10.0.0.0"))
+    log.info(ip1)
+    log.info(ip2)
+    log.info(ip1.is_private)
+    log.info(ip2.is_private)
     log.info("________________________________")
 
 
