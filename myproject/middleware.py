@@ -17,16 +17,18 @@ def get_ip(request):
     log.info("________________________________")
     ip1 = ipaddress.IPv4Address(ip)
     ip2 = ipaddress.IPv4Address("10.0.0.0")
+    ip3 = ipaddress.IPv4Address("13.110.54.43")
     log.info(ip)
     log.info(ip1)
     log.info(ip2)
     log.info(ip1.is_private)
     log.info(ip2.is_private)
+    log.info(ip3.is_private)
     log.info("________________________________")
 
 
 
-    return ip
+    return ip1
 
 class RequestLoggingMiddleware(object):
     def __init__(self, get_response):
