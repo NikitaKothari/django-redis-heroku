@@ -1,18 +1,18 @@
 import time
 from structlog import get_logger
+from ipware import get_client_ip
 
 
 log = get_logger()
 
+
 def get_ip(request):
-    log.info("**************&&&&&&&&&&&&&&&**************")
-    log.info(request.META.get("REMOTE_ADDR", "None"))
-    log.info("**************$$$$$$$$$$$$$$$**************")
-    log.info(request.META.get("HTTP_X_FORWARDED_FOR", "None"))
-    log.info("**************YYYYYYYYYYYYYYY**************")
+    client_ip, is_routable = get_client_ip(request, request_header_order=['HTTP_X_FORWARDED_FOR'])
+    log.info("client_ip", client_ip)
+    if client_ip and is_routable:
+       return client_ip
+    return None
 
-
-# TODO: consolidate this to avoid duplication.
 class RequestLoggingMiddleware(object):
     def __init__(self, get_response):
         self.get_response = get_response
