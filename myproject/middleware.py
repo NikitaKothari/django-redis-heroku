@@ -8,7 +8,8 @@ log = get_logger()
 
 def get_ip(request):
     client_ip, is_routable = get_client_ip(request, request_header_order=['HTTP_X_FORWARDED_FOR'])
-    log.info("client_ip", client_ip)
+    log.info("client_ip *******")
+    log.info(client_ip)
     if client_ip and is_routable:
        return client_ip
     return None
