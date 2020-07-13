@@ -79,8 +79,8 @@ $(VIRTUALENVDIR): checkvirtualenvversion
 
 nginx/server.crt nginx/server.key:
 	mkdir -p nginx
-	openssl genrsa -des3 -passout pass:x -out nginx/server.pass.key 2048
-	openssl rsa -passin pass:x -in nginx/server.pass.key -out nginx/server.key
+	openssl genrsa -des3 -passout pass:gsahdg -out nginx/server.pass.key 2048
+	openssl rsa -passin pass:gsahdg -in nginx/server.pass.key -out nginx/server.key
 	openssl req -new -key nginx/server.key -out nginx/server.csr
 	openssl x509 -req -days 365 -in nginx/server.csr -signkey nginx/server.key -out nginx/server.crt
 
