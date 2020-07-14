@@ -16,7 +16,7 @@ def get_ip(request):
 
     log.info("------------------------------")
     log.info("HTTP_X_FORWARDED_FOR")
-    log.info(request.META.get("HTTP_X_Forwarded_For"))
+    log.info(request.META.get("HTTP_X_FORWARDED_FOR"))
     log.info("REMOTE_ADDR")
     log.info(request.META.get("REMOTE_ADDR"))
     log.info("------------------------------")
