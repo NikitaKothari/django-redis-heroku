@@ -7,7 +7,7 @@ log = get_logger()
 
 
 def get_ip(request):
-    x_forwarded_for = request.META.get("HTTP_X_Forwarded_For")
+    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
     if x_forwarded_for:
         # IP chains should always be read from left-to-right, The client IP should always be the left-most IP
         ip = x_forwarded_for.split(",")[0]
@@ -15,7 +15,7 @@ def get_ip(request):
         ip = request.META.get("REMOTE_ADDR")
 
     log.info("------------------------------")
-    log.info("HTTP_X_Forwarded_For")
+    log.info("HTTP_X_FORWARDED_FOR")
     log.info(request.META.get("HTTP_X_Forwarded_For"))
     log.info("REMOTE_ADDR")
     log.info(request.META.get("REMOTE_ADDR"))
