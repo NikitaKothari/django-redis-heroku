@@ -3,5 +3,4 @@ def when_ready(server):
 
 
 bind = 'unix:///tmp/nginx.socket'
-worker_class = 'gevent'  # not necessary
 timeout = 90  # not necesssary
