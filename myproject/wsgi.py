@@ -11,6 +11,10 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+from structlog import get_logger
+
+log = get_logger()
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myproject.settings")
 
 application = get_wsgi_application()
@@ -18,4 +22,6 @@ application = get_wsgi_application()
 # required to make nginx serve traffic. see https://github.com/heroku/heroku-buildpack-nginx#applicationdyno-coordination
 from pathlib import Path
 
+log.info("********************************")
 Path("/tmp/app-initialized").touch()
+log.info("********************************")
