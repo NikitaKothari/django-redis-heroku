@@ -25,6 +25,14 @@ def get_ip(request):
     log.info(request.META.get("REMOTE_ADDR"))
     log.info("------------------------------")
 
+    ipv6 = ipaddress.IPv6Address("10.5.206.253")
+    log.info("****************")
+    log.info(ipv6)
+    log.info(ipv6.is_private)
+    ipv6 = ipaddress.IPv6Address("13.110.54.38")
+    log.info("****************123")
+    log.info(ipv6)
+    log.info(ipv6.is_private)
     return ip
 
 
