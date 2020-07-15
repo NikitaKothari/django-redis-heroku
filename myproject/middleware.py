@@ -11,28 +11,13 @@ def get_ip(request):
     if x_forwarded_for:
         # IP chains should always be read from left-to-right, The client IP should always be the left-most IP
         ip = x_forwarded_for.split(",")[0]
-        log.info("****************")
-        log.info("ip")
-        log.info(ip)
-        log.info("****************")
     else:
         ip = request.META.get("REMOTE_ADDR")
 
-    log.info("------------------------------")
-    log.info("HTTP_X_FORWARDED_FOR")
-    log.info(request.META.get("HTTP_X_FORWARDED_FOR"))
-    log.info("REMOTE_ADDR")
-    log.info(request.META.get("REMOTE_ADDR"))
-    log.info("------------------------------")
-
-    ipv6 = ipaddress.ip_address("10.5.206.253")
     log.info("****************")
-    log.info(ipv6)
-    log.info(ipv6.is_private)
-    ipv6 = ipaddress.ip_address("13.110.54.38")
-    log.info("****************123")
-    log.info(ipv6)
-    log.info(ipv6.is_private)
+    log.info("ip")
+    log.info(ip)
+    log.info("****************")
     return ip
 
 
