@@ -10,8 +10,7 @@ from celery.contrib.methods import task
 log = structlog.get_logger()
 
 
-@task1(name="counter")
-@task(name="counter")
+@task()
 def counter():
     log.info("test test test")
     instance, created = MyModel.objects.get_or_create(id=1)
