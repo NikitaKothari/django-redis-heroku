@@ -9,7 +9,11 @@ log = get_logger()
 def get_ip(request):
     x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
     if x_forwarded_for:
-        # IP chains should always be read from left-to-right, The client IP should always be the left-most IP
+        # trusted_hops_str is the list of IP addresses that Heroku router sees and stores it into x-forwarded-for.
+        # x-forwarded-for is a stack and when the Heroku router receives a request, each hop pushes a new IP address onto the end of the stack.
+        # As we are using private spaces we don't need to worry about untrusted x-forwarded-for headers and we can trust that the
+        # last hop is the client and the corresponding IP is client IP
+        log.info(x_forwarded_for)
         ip = x_forwarded_for.split(",")[0]
     else:
         ip = request.META.get("REMOTE_ADDR")
