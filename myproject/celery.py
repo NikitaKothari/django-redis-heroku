@@ -5,6 +5,6 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myproject.settings")
 app = Celery("screenmatter")
 
-app.config_from_object("django.conf:settings", namespace="CELERY")
+app.config_from_object("django.conf:settings")
 
 app.autodiscover_tasks()
