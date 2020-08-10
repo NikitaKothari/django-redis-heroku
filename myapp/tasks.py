@@ -4,7 +4,7 @@ from myproject.celery import app
 from myapp.redis import client
 import structlog
 
-from celery.contrib.methods import task
+from celery import task
 
 log = structlog.get_logger()
 
