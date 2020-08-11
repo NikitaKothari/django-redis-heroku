@@ -20,7 +20,7 @@ class MyTask(Task):
 
 
 mytask = MyTask()
-celery.tasks.register(mytask)
+app.tasks.register(mytask)
 
 
 @app.task
