@@ -6,5 +6,5 @@ class Command(BaseCommand):
     """ class Command """
 
     def handle(self, *args, **options):
-        print('Wake up server')
-        requests.get('https://django-celery-heroku.herokuapp.com/')
+        print("Wake up server")
+        requests.get("https://django-celery-heroku.herokuapp.com/")
