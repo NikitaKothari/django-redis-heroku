@@ -8,6 +8,20 @@ log = structlog.get_logger()
 from celery import Task
 
 
+class MyTask(Task):
+    ignore_result = True
+
+    def run(self, source, *args, **kwargs):
+        log.info("Task ****** Task")
+        instance, created = MyModel.objects.get_or_create(id=1)
+        instance.counter += 5
+        instance.save()
+
+
+task1 = MyTask()
+app.tasks.register(task1)
+
+
 @app.task
 def counter():
     log.info("test test test")

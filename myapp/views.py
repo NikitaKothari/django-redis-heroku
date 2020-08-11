@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 from myapp.models import MyModel
-from myapp.tasks import counter
+from myapp.tasks import counter, task1
 
 import structlog
 
@@ -21,7 +21,7 @@ class HomeView(TemplateView):
         log.info("Test*****")
         counter.delay()
         # Run on Celery worker now
-        # task1.delay()
+        task1.delay()
         log.info("Test*****")
 
         return context
