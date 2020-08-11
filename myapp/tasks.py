@@ -11,7 +11,6 @@ import celery
 
 class MyTask(Task):
     ignore_result = True
-    __name__ = "mytask"
 
     def run(self, source, *args, **kwargs):
         log.info("Task ****** Task")
