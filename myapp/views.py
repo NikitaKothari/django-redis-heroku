@@ -3,7 +3,6 @@ from myapp.models import MyModel
 from myapp.tasks import counter
 
 import structlog
-import time
 
 log = structlog.get_logger()
 
@@ -21,6 +20,5 @@ class HomeView(TemplateView):
         context["counter"] = instance_counter
         log.info("Test*****")
         counter.delay()
-        time.sleep(10)
         log.info("Test*****")
         return context
