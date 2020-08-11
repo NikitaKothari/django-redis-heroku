@@ -6,6 +6,7 @@ import structlog
 log = structlog.get_logger()
 
 from celery import Task
+import celery
 
 
 class MyTask(Task):
@@ -16,6 +17,10 @@ class MyTask(Task):
         instance, created = MyModel.objects.get_or_create(id=1)
         instance.counter += 5
         instance.save()
+
+
+mytask = MyTask()
+celery.tasks.register(mytask)
 
 
 @app.task
