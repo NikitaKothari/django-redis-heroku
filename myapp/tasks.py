@@ -18,6 +18,10 @@ class MyTask(Task):
         instance.save()
 
 
+task = MyTask()
+app.tasks.register(task)
+
+
 @app.task
 def counter():
     log.info("test test test")
