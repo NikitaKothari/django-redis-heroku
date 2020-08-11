@@ -65,12 +65,6 @@ install: requirements.txt $(VIRTUALENVDIR)
 .env:
 	cp env.template .env
 
-.env.test:
-	cp env.test.template .env.test
-
-.env.integration:
-	cp env.integration.template .env.integration
-
 dbsetup:
 	(psql -lqt | cut -d \| -f 1 | grep -wq "hccentral") || psql --command="CREATE DATABASE hccentral"
 
