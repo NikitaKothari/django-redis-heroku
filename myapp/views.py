@@ -19,7 +19,7 @@ class HomeView(TemplateView):
             instance_counter = MyModel.objects.get(id=1).counter
         context["counter"] = instance_counter
         log.info("Test*****")
-        mytask.delay()
+        mytask.delay(123)
         # Run on Celery worker now
         # task1.delay()
         log.info("Test*****")
