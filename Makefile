@@ -21,7 +21,7 @@ venv: $(VIRTUALENVDIR)
 checkvirtualenvversion:
 	@test "$(shell $(VIRTUALENVDIR)/bin/python --version)" = "Python $(PYTHON_VERSION)" || (echo "clearing virtualenv to bump version"; rm -rf $(VIRTUALENVDIR) )
 
-setup: preflight cert $(VIRTUALENVDIR) install .env .env.test .env.integration dbsetup
+setup: preflight cert $(VIRTUALENVDIR) install .env .env.test .env.integration
 	@$(MYSHELL) -lc "workon $(VIRTUALENV)"
 
 preflight:
@@ -50,10 +50,8 @@ preflight:
 # pyenv python
 	@which -s virtualenvwrapper.sh || (echo "installing virtualenv-wrapper"; (cd ..; sudo -H python3 -m pip install virtualenvwrapper); echo 'source /usr/local/bin/virtualenvwrapper.sh' >> ~/$(PROFILE_FILE))
 	@which -s foreman || (echo "installing foreman"; sudo gem install foreman)
-	@which -s postgres || (echo "installing postgresql"; brew install postgresql)
 	@which -s nginx || (echo "installing nginx"; brew install nginx)
 	@which -s jq || (echo "installing jq"; brew install jq)
-	@psql postgres -c 'select 1' > /dev/null || (echo "starting postgres service"; brew services start postgresql)
 	@$(MYSHELL) -lc "type virtualenvwrapper | grep -q 'virtualenvwrapper $(FUNCTION_SUFFIX)'" || (echo "activating virtualenv-wrapper"; echo 'source /usr/local/bin/virtualenvwrapper.sh' >> ~/$(PROFILE_FILE) )
 	@echo "preflight check complete"
 
@@ -64,9 +62,6 @@ install: requirements.txt $(VIRTUALENVDIR)
 
 .env:
 	cp env.template .env
-
-dbsetup:
-	(psql -lqt | cut -d \| -f 1 | grep -wq "hccentral") || psql --command="CREATE DATABASE hccentral"
 
 $(VIRTUALENVDIR): checkvirtualenvversion
 	$(MYSHELL) -lc "mkvirtualenv --python=`pyenv which python3` $(VIRTUALENV) -a ."
