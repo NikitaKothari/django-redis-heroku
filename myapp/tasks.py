@@ -9,6 +9,7 @@ from celery import Task
 
 
 class MyTask(Task):
+    name = "task1"
     ignore_result = True
 
     def run(self, source, *args, **kwargs):
@@ -18,8 +19,8 @@ class MyTask(Task):
         instance.save()
 
 
-task = MyTask()
-app.tasks.register(task)
+task1 = MyTask()
+app.tasks.register(task1)
 
 
 @app.task
