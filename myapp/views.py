@@ -21,7 +21,7 @@ class HomeView(TemplateView):
         log.info("Test*****")
         counter.delay()
         # Run on Celery worker now
-        task1.delay()
+        # task1.delay()
         log.info("Test*****")
 
         return context
