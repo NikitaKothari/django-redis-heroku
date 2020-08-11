@@ -9,7 +9,7 @@ from celery import task
 log = structlog.get_logger()
 
 
-@task
+@app.task
 def counter():
     log.info("test test test")
     instance, created = MyModel.objects.get_or_create(id=1)

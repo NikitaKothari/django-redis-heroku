@@ -13,5 +13,4 @@ class HomeView(TemplateView):
         if MyModel.objects.exists():
             instance_counter = MyModel.objects.get(id=1).counter
         context["counter"] = instance_counter
-        counter()
-        return context
+        counter.delay()
