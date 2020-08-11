@@ -11,7 +11,6 @@ import celery
 
 class MyTask(Task):
     ignore_result = True
-    __name__ = "mytask"
 
     def run(self, source, *args, **kwargs):
         log.info("Task ****** Task")
@@ -21,7 +20,7 @@ class MyTask(Task):
 
 
 mytask = MyTask()
-app.tasks.register(mytask)
+app.register_task(mytask)
 
 
 @app.task
