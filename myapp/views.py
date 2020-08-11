@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 from myapp.models import MyModel
-from myapp.tasks import counter, task1
+from myapp.tasks import counter
 
 import structlog
 
