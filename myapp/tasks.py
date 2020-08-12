@@ -19,7 +19,7 @@ class MyTask(Task):
 
 
 mytask = MyTask()
-app.register_task(mytask)
+app.tasks.register(mytask)
 
 
 @app.task
