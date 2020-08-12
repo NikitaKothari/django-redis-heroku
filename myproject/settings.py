@@ -101,10 +101,5 @@ BROKER_CONNECTION_MAX_RETRIES = os.environ.get("BROKER_CONNECTION_MAX_RETRIES", 
 BROKER_POOL_LIMIT = os.environ.get("BROKER_POOL_LIMIT", None)
 
 
-BROKER_URL = REDIS_URL
-CELERY_ACCEPT_CONTENT = ["application/json"]
-CELERY_TASK_SERIALIZER = "json"
-CELERY_RESULT_SERIALIZER = "json"
-
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
