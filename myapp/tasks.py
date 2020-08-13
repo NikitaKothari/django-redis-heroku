@@ -12,7 +12,7 @@ class MyTask(Task):
     ignore_result = True
 
     def run(self):
-        log.info("Task ****** Task")
+        log.info("Task ****** Task **")
         instance, created = MyModel.objects.get_or_create(id=1)
         instance.counter += 5
         instance.save()
