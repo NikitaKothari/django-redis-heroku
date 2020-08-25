@@ -6,6 +6,8 @@ import structlog
 log = structlog.get_logger()
 
 from celery import Task
+import celery
+from myapp.redis import client
 
 
 class MyTask(Task):
@@ -22,9 +24,19 @@ mytask = MyTask()
 app.tasks.register(mytask)
 
 
+class Test:
+    def counter(self):
+        log.info("test test test")
+        instance, created = MyModel.objects.get_or_create(id=1)
+        instance.counter += 1
+        instance.save()
+
+
 @app.task
-def counter():
-    log.info("test test test")
-    instance, created = MyModel.objects.get_or_create(id=1)
-    instance.counter += 1
-    instance.save()
+@celery.task
+def counter_task():
+    client.set("Nikita", 5)
+    log.info("---------From Redis----------")
+    log.info(client.get("Nikita"))
+    log.info("---------To Redis----------")
+    Test().counter()
