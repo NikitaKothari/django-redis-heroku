@@ -18,8 +18,5 @@ class HomeView(TemplateView):
         if MyModel.objects.exists():
             instance_counter = MyModel.objects.get(id=1).counter
         context["counter"] = instance_counter
-        log.info("Test*****")
         counter_task.delay()
-        log.info("Test*****")
-
         return context

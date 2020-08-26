@@ -29,7 +29,7 @@ class Test:
     def counter(self):
         log.info("test test test")
         instance, created = MyModel.objects.get_or_create(id=1)
-        instance.counter += 1
+        instance.counter += 5
         instance.save()
 
 
@@ -38,7 +38,6 @@ class Test:
 def counter_task():
     client.set("Nikita", 5)
     log.info("---------From Redis----------")
-    log.info(settings.REDIS_URL)
     log.info(client.get("Nikita"))
     log.info("---------To Redis----------")
     Test().counter()
